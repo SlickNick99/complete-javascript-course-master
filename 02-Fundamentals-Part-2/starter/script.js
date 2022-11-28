@@ -511,18 +511,53 @@
 // for (let i = 0; i < listOfNeighbours.length; i++)
 //   for (let y = 0; y < listOfNeighbours[i].length; y++)
 //     console.log(listOfNeighbours[i][y]);
-let rep = 1;
-while (rep <= 10) {
-  console.log(`Lifting weights repitiion ${rep}`);
-  rep++;
-}
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`Lifting weights repitiion ${rep}`);
+//   rep++;
+// }
 
-let dice = Math.trunc(Math.random() * 6) + 1;
+// let dice = Math.trunc(Math.random() * 6) + 1;
 
-while (dice !== 6) {
-  console.log(`You rolled a ${dice}`);
-  dice = Math.trunc(Math.random() * 6) + 1;
-  if (dice === 6) {
-    console.log("Loop is about to end");
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) {
+//     console.log("Loop is about to end");
+//   }
+// }
+
+const calcTip = function (bill) {
+  if (bill >= 50 && bill < 300) {
+    return bill * 0.15;
+  } else if (bill < 50) {
+    return bill * 0.1;
+  } else {
+    return bill * 0.2;
   }
+};
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+const totals = [];
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  const totalCost = bills[i] + tips[i];
+  totals.push(totalCost);
+  console.log(
+    `The bill was $${bills[i]} the tip was $${tips[i]} and the total is $${totals[i]}`
+  );
 }
+
+const calcAvg = function (arr) {
+  let sum = 0;
+  for (let a = 0; a < arr.length; a++) {
+    // sum = sum + arr[a];
+    sum += arr[a];
+  }
+  return Math.round(sum) / arr.length;
+};
+console.log(calcAvg([2, 3, 7]));
+console.log(calcAvg(totals));
