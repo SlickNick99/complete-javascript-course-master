@@ -527,37 +527,135 @@
 //   }
 // }
 
+// const calcTip = function (bill) {
+//   if (bill >= 50 && bill < 300) {
+//     return bill * 0.15;
+//   } else if (bill < 50) {
+//     return bill * 0.1;
+//   } else {
+//     return bill * 0.2;
+//   }
+// };
+
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+// const tips = [];
+// const totals = [];
+
+// for (let i = 0; i < bills.length; i++) {
+//   tips.push(calcTip(bills[i]));
+//   const totalCost = bills[i] + tips[i];
+//   totals.push(totalCost);
+//   console.log(
+//     `The bill was $${bills[i]} the tip was $${tips[i]} and the total is $${totals[i]}`
+//   );
+// }
+
+// const calcAvg = function (arr) {
+//   let sum = 0;
+//   for (let a = 0; a < arr.length; a++) {
+//     // sum = sum + arr[a];
+//     sum += arr[a];
+//   }
+//   return Math.round(sum) / arr.length;
+// };
+// console.log(calcAvg([2, 3, 7]));
+// console.log(calcAvg(totals));
+
+// const percentages2 = [];
+// const populations = [50, 1441, 103, 450];
+// const percentageOfWorld1 = function (populations) {
+//   return (populations / 7900) * 100;
+// };
+
+// for (let i = 0; i < populations.length; i++) {
+//   const popPerc = percentageOfWorld1(populations[i]);
+//   percentages2.push(popPerc);
+// }
+
+// console.log(percentages2);
+
+// const percentages3 = [];
+// let i = 0;
+// while (i < populations.length) {
+//   percentages3.push(percentageOfWorld1(populations[i]));
+//   i++;
+// }
+
+// console.log(percentages3);
+
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1997,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+//   true,
+// ];
+
+// for (let i = 0; i < jonas.length; i++) {
+//   for (let y = 0; y < jonas[i].length; y++) {
+//     console.log(jonas[i][y]);
+//   }
+// }
+
+// for (let i = 0; i < listOfNeighbours.length; i++)
+//   for (let y = 0; y < listOfNeighbours[i].length; y++)
+//     console.log(listOfNeighbours[i][y]);
+// const types = [];
+// // continue and break;
+// console.log("ONLY STRINGS");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] !== "string") continue;
+//   types.push(typeof jonas[i]);
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+// console.log("Break with Number");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] === "number") break;
+//   types.push(typeof jonas[i]);
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//   const age = 2022 - years[i];
+//   ages.push(age);
+// }
+// console.log(ages);
+
+// for (let i = 0; i < bills.length; i++) {
+//   tips.push(calcTip(bills[i]));
+//   const totalCost = bills[i] + tips[i];
+//   totals.push(totalCost);
+//   console.log(
+//     `The bill was $${bills[i]} the tip was $${tips[i]} and the total is $${totals[i]}`
+//   );
+// }
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const totals = [];
+const tips = [];
+
 const calcTip = function (bill) {
-  if (bill >= 50 && bill < 300) {
+  if (bill >= 50 && bill <= 300) {
     return bill * 0.15;
-  } else if (bill < 50) {
-    return bill * 0.1;
   } else {
     return bill * 0.2;
   }
 };
 
-const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
-
-const tips = [];
-const totals = [];
-
-for (let i = 0; i < bills.length; i++) {
-  tips.push(calcTip(bills[i]));
-  const totalCost = bills[i] + tips[i];
-  totals.push(totalCost);
-  console.log(
-    `The bill was $${bills[i]} the tip was $${tips[i]} and the total is $${totals[i]}`
-  );
-}
-
-const calcAvg = function (arr) {
-  let sum = 0;
-  for (let a = 0; a < arr.length; a++) {
-    // sum = sum + arr[a];
-    sum += arr[a];
+const totalBill = function (bill) {
+  for (let i = 0; i < bill.length; i++) {
+    tips.push(calcTip(bill[i]));
+    const totalCost = tips[i] + bill[i];
+    totals.push(totalCost);
+    console.log(totalCost);
   }
-  return Math.round(sum) / arr.length;
+  return totalBill;
 };
-console.log(calcAvg([2, 3, 7]));
-console.log(calcAvg(totals));
+
+console.log(totalBill(bills));
