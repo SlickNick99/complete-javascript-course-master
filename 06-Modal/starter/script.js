@@ -27,18 +27,18 @@ overlay.addEventListener('click', toggleModal);
 // });
 
 // closeModal.addEventListener('click', function () {
-//   modal.classList.toggle('hidden');
+//    modal.classList.toggle('hidden');
 //   overlay.classList.toggle('hidden');
 // });
 
 // overlay.addEventListener('click', function () {
 //   overlay.classList.add('hidden');
 // });
-document.addEventListener('keydown', function (e) {
-  console.log(e.key);
-  if (e.key === 'Escape') {
-    if (!modal.classList.contains('hidden')) {
-      toggleModal();
-    }
-  }
-});
+// document.addEventListener('keydown', function (e) {
+//   console.log(e.key);
+//   if (e.key === 'Escape') {
+//     if (!modal.classList.contains('hidden')) {
+//       toggleModal();
+//     }
+//   }
+// });
