@@ -16,6 +16,7 @@ const displayMessage = function (message) {
 };
 
 document.querySelector('.check').addEventListener('click', function () {
+  // getting a value from input field wtih .value
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess);
 
