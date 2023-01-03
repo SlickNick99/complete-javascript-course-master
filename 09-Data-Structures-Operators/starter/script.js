@@ -298,7 +298,7 @@ const newestRestaurant = {
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Rissoto'],
+  mainMenu: ['Pizza', 'Rissoto', 'Pasta'],
   openingHours: {
     thu: {
       open: 12,
@@ -308,7 +308,7 @@ const newestRestaurant = {
       open: 11,
       close: 23,
     },
-    thu: {
+    sat: {
       open: 0, // Open 24 hours
       close: 24,
     },
@@ -316,7 +316,34 @@ const newestRestaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address}, at ${time}`
+    );
+  },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
+
+newestRestaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+});
 
 const arr4 = [2, 3, 4];
 
@@ -340,3 +367,114 @@ const {
 } = openingHours;
 
 console.log(open, close);
+
+const arr5 = [7, 8, 9];
+const badNewArr2 = [1, 2, arr5[0], arr5[1], arr5[2]];
+console.log(badNewArr2);
+const newMenu = [...newestRestaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+const menu2 = [...newestRestaurant.mainMenu, ...newestRestaurant.starterMenu];
+console.log(menu2);
+
+// Iterables: arrays, strings, maps, sets. NOT objects
+const str = 'Jonas';
+const letters = [...str, ' ', 's'];
+console.log(letters);
+
+// const ingredients2 = [
+//   prompt("Let's make pasta! ingredient 1?"),
+//   prompt("Let's make pasta! ingredient 2?"),
+//   prompt("Let's make pasta! ingredient 3?"),
+// ];
+
+// newestRestaurant.orderPasta(...ingredients2);
+
+// Objects
+const theNewestRestaurant = {
+  foundedIn: 1999,
+  ...newestRestaurant,
+  founder: 'loddy doddy',
+};
+console.log(theNewestRestaurant);
+
+const [pizza, rissoto, ...otherFood] = [
+  ...newestRestaurant.mainMenu,
+  ...newestRestaurant.starterMenu,
+];
+console.log(pizza, rissoto, otherFood);
+
+const { sat, ...weekdays } = newestRestaurant.openingHours;
+console.log(sat, weekdays);
+
+// 2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 7, 2, 6, 7, 5);
+
+const x = [23, 5, 7];
+add(...x);
+
+newestRestaurant.orderPizza('Mushrooms', 'caprese', 'citrloa');
+
+console.log('----- OR -----');
+// Use ANY data type, return any data type, short-circuiting
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+newestRestaurant.numGuests = 0;
+const guests1 = newestRestaurant.numGuests ? newestRestaurant.numGuests : 10;
+console.log(guests1);
+const guests2 = newestRestaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----- AND -----');
+console.log(0 && 'Jonas');
+console.log(7 && 'Jonas');
+
+if (newestRestaurant.orderPizza) {
+  newestRestaurant.orderPizza('Mushrooms', 'Spinach');
+}
+
+newestRestaurant.orderPizza &&
+  newestRestaurant.orderPizza('Mushrooms', 'Spinach');
+
+// Nullish null and undefined (NOT 0 or '')
+const guestCorrect = newestRestaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// OR assignment operator
+// rest1.numGuests = rest1.numGuests || 10
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// nullish assignment operator
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+// rest1.owner = rest1.owner && 'Anonymous';
+// rest2.owner = rest2.owner && 'Anonymous';
+
+rest1.owner &&= 'anonymous';
+rest2.owner &&= 'anonymous';
+console.log(rest1);
+console.log(rest2);
